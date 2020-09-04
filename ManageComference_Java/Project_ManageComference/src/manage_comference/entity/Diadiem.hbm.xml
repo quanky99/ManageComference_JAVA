@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 30, 2020 2:28:00 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="manage_comference.entity.Diadiem" table="diadiem" catalog="manage_comference" optimistic-lock="version">
+        <id name="idDd" type="java.lang.Integer">
+            <column name="ID_DD" />
+            <generator class="identity" />
+        </id>
+        <property name="tenDd" type="string">
+            <column name="TEN_DD" length="50" />
+        </property>
+        <property name="diachi" type="string">
+            <column name="DIACHI" length="200" />
+        </property>
+        <property name="succhua" type="java.lang.Integer">
+            <column name="SUCCHUA" />
+        </property>
+        <set name="hoinghis" table="hoinghi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_DIADIEM" />
+            </key>
+            <one-to-many class="manage_comference.entity.Hoinghi" />
+        </set>
+    </class>
+</hibernate-mapping>

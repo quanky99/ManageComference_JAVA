@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 30, 2020 2:28:00 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="manage_comference.entity.AdUser" table="ad_user" catalog="manage_comference" optimistic-lock="version">
+        <id name="idAccount" type="java.lang.Integer">
+            <column name="ID_ACCOUNT" />
+            <generator class="identity" />
+        </id>
+        <property name="hoten" type="string">
+            <column name="HOTEN" length="50" />
+        </property>
+        <property name="username" type="string">
+            <column name="USERNAME" length="50" />
+        </property>
+        <property name="passwordAcc" type="string">
+            <column name="PASSWORD_Acc" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="50" />
+        </property>
+        <property name="loai" type="java.lang.Boolean">
+            <column name="LOAI" />
+        </property>
+        <set name="participantses" table="participants" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAR" not-null="true" />
+            </key>
+            <one-to-many class="manage_comference.entity.Participants" />
+        </set>
+        <set name="participantsSignups" table="participants_signup" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAR" not-null="true" />
+            </key>
+            <one-to-many class="manage_comference.entity.ParticipantsSignup" />
+        </set>
+    </class>
+</hibernate-mapping>

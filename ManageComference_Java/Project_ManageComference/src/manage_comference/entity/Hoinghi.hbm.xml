@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 30, 2020 2:28:00 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="manage_comference.entity.Hoinghi" table="hoinghi" catalog="manage_comference" optimistic-lock="version">
+        <id name="idHn" type="java.lang.Integer">
+            <column name="ID_HN" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="diadiem" class="manage_comference.entity.Diadiem" fetch="select">
+            <column name="ID_DIADIEM" />
+        </many-to-one>
+        <property name="tenHn" type="string">
+            <column name="TEN_HN" length="50" />
+        </property>
+        <property name="mota" type="string">
+            <column name="MOTA" length="150" />
+        </property>
+        <property name="motaChitiet" type="string">
+            <column name="MOTA_CHITIET" length="1000" />
+        </property>
+        <property name="hinhanh" type="string">
+            <column name="HINHANH" length="200" />
+        </property>
+        <property name="thoigian" type="timestamp">
+            <column name="THOIGIAN" length="19" />
+        </property>
+        <set name="participantsSignups" table="participants_signup" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_COMFERENCE" not-null="true" />
+            </key>
+            <one-to-many class="manage_comference.entity.ParticipantsSignup" />
+        </set>
+        <set name="participantses" table="participants" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_COMFERENCE" not-null="true" />
+            </key>
+            <one-to-many class="manage_comference.entity.Participants" />
+        </set>
+    </class>
+</hibernate-mapping>
